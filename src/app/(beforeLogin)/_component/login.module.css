@@ -18,7 +18,7 @@
 }
 
 .modal {
-    background-color: rgb(var(--background-end-rgb));
+    background-color: #000;
     position: relative;
     top: 50%;
     transform: translateY(-50%);

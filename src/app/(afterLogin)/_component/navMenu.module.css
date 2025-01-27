@@ -1,0 +1,22 @@
+.navPill {
+    display: inline-flex;
+    height: 50px;
+    padding: 12px;
+    align-items: center;
+    transition: background-color 0.2s;
+    border-radius: 29px;
+
+}
+.navPill:hover {
+    background-color: rgba(231,233,234, 0.1);
+}
+
+.navPill > div {
+    margin-left: 20px;
+    margin-right: 16px;
+    font-size: 20px;
+}
+
+.navPill svg {
+    fill: #fff;
+}

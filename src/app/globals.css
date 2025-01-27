@@ -93,8 +93,8 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-end-rgb));
+  color: #fff;
+  background: #000;
 }
 
 a {
@@ -104,11 +104,12 @@ a {
 
 input {
     background-color: transparent;
+    caret-color: rgb(29, 155, 240);
 }
 
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px rgb(var(--background-end-rgb)) inset !important;
-    box-shadow: 0 0 0 1000px rgb(var(--background-end-rgb)) inset !important;
+    -webkit-box-shadow: 0 0 0 1000px #000 inset !important;
+    box-shadow: 0 0 0 1000px #000 inset !important;
 }
 
 @media (prefers-color-scheme: dark) {
