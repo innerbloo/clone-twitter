@@ -40,7 +40,7 @@
   --card-border-rgb: 131, 134, 135;
 
   --button-border-color-rgb: 207, 217, 222;
-
+  --button-hover-color-rgb: 15, 20, 25, 0.1;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -75,6 +75,8 @@
     --card-border-rgb: 200, 200, 200;
 
     --button-border-color-rgb: 207, 217, 222;
+    --button-hover-color-rgb: 239, 243, 244, 0.1;
+
   }
 }
 
@@ -100,9 +102,13 @@ a {
   text-decoration: none;
 }
 
+input {
+    background-color: transparent;
+}
+
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px rgb(var(--background-end-rgb)) inset;
-    box-shadow: 0 0 0 1000px rgb(var(--background-end-rgb)) inset;
+    -webkit-box-shadow: 0 0 0 1000px rgb(var(--background-end-rgb)) inset !important;
+    box-shadow: 0 0 0 1000px rgb(var(--background-end-rgb)) inset !important;
 }
 
 @media (prefers-color-scheme: dark) {
