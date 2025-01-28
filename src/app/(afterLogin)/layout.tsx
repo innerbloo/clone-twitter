@@ -4,13 +4,11 @@ import { ReactNode } from 'react';
 
 import YLogo from '../../../public/ylogo.svg';
 
+import FollowRecommend from '@/app/(afterLogin)/_component/FollowRecommend';
 import LogoutButton from '@/app/(afterLogin)/_component/LogoutButton';
 import NavMenu from '@/app/(afterLogin)/_component/NavMenu';
+import TrendSection from '@/app/(afterLogin)/_component/TrendSection';
 import style from '@/app/(afterLogin)/layout.module.css';
-
-// import LogoutButton from "@/app/(afterLogin)/_component/LogoutButton";
-// import TrendSection from "@/app/(afterLogin)/_component/TrendSection";
-// import FollowRecommend from "@/app/(afterLogin)/_component/FollowRecommend";
 
 export default function AfterLoginLayout({
     children,
@@ -27,8 +25,8 @@ export default function AfterLoginLayout({
                                 <Image
                                     src={YLogo}
                                     alt="y.com로고"
-                                    width={40}
-                                    height={40}
+                                    width={32}
+                                    height={32}
                                 />
                             </div>
                         </Link>
@@ -63,12 +61,12 @@ export default function AfterLoginLayout({
                                 <input type="search" />
                             </form>
                         </div>
-                        {/*<TrendSection />*/}
+                        <TrendSection />
                         <div className={style.followRecommend}>
                             <h3>팔로우 추천</h3>
-                            {/*<FollowRecommend />*/}
-                            {/*<FollowRecommend />*/}
-                            {/*<FollowRecommend />*/}
+                            <FollowRecommend />
+                            <FollowRecommend />
+                            <FollowRecommend />
                         </div>
                     </section>
                 </div>
