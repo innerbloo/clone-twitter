@@ -9,7 +9,7 @@ import Trend from '@/app/(afterLogin)/_component/Trend';
 export default function TrendSection() {
     const pathName = usePathname();
 
-    if (pathName === '/explore') {
+    if (pathName === '/explore' || pathName.includes('/messages')) {
         return null;
     }
 

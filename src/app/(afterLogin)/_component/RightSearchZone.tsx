@@ -8,15 +8,15 @@ import style from './rightSearchZone.module.css';
 import SearchForm from '@/app/(afterLogin)/_component/SearchForm';
 
 export default function RightSearchZone() {
-    const pathname = usePathname();
+    const pathName = usePathname();
     const onChangeFollow = () => {};
     const onChangeAll = () => {};
 
-    if (pathname === '/explore') {
+    if (pathName === '/explore' || pathName.includes('/messages')) {
         return null;
     }
 
-    if (pathname === '/search') {
+    if (pathName === '/search') {
         return (
             <div>
                 <h5 className={style.filterTitle}>검색 필터</h5>

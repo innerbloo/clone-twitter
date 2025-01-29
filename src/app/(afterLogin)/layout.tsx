@@ -4,9 +4,9 @@ import { ReactNode } from 'react';
 
 import YLogo from '../../../public/ylogo.svg';
 
-import FollowRecommend from '@/app/(afterLogin)/_component/FollowRecommend';
 import LogoutButton from '@/app/(afterLogin)/_component/LogoutButton';
 import NavMenu from '@/app/(afterLogin)/_component/NavMenu';
+import RightFollowRecommendZone from '@/app/(afterLogin)/_component/RightFollowRecommendZone';
 import RightSearchZone from '@/app/(afterLogin)/_component/RightSearchZone';
 import TrendSection from '@/app/(afterLogin)/_component/TrendSection';
 import style from '@/app/(afterLogin)/layout.module.css';
@@ -51,12 +51,7 @@ export default function AfterLoginLayout({ children, modal }: Readonly<Props>) {
                     <section className={style.rightSection}>
                         <RightSearchZone />
                         <TrendSection />
-                        <div className={style.followRecommend}>
-                            <h3>팔로우 추천</h3>
-                            <FollowRecommend />
-                            <FollowRecommend />
-                            <FollowRecommend />
-                        </div>
+                        <RightFollowRecommendZone />
                     </section>
                 </div>
             </div>
