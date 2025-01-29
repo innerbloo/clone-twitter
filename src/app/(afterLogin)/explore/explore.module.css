@@ -17,6 +17,7 @@
     border-color: #2f3336;
     border-bottom-width: 1px;
     border-bottom-style: solid;
+    background-color: rgba(0, 0, 0, 0.65);
     backdrop-filter: blur(12px);
 }
 .formZone form {

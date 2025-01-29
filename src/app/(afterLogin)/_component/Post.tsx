@@ -6,12 +6,14 @@ import Link from 'next/link';
 import style from './post.module.css';
 
 import ActionButtons from '@/app/(afterLogin)/_component/ActionButtons';
+import PostArticle from '@/app/(afterLogin)/_component/PostArticle';
 
 dayjs.locale('ko');
 dayjs.extend(relativeTime);
 
 export default function Post() {
     const target = {
+        postId: 1,
         User: {
             id: 'elonmusk',
             nickname: 'Elon Musk',
@@ -21,8 +23,9 @@ export default function Post() {
         createdAt: new Date(),
         Images: [],
     };
+
     return (
-        <article className={style.post}>
+        <PostArticle post={target}>
             <div className={style.postWrapper}>
                 <div className={style.postUserSection}>
                     <Link
@@ -57,6 +60,6 @@ export default function Post() {
                     <ActionButtons />
                 </div>
             </div>
-        </article>
+        </PostArticle>
     );
 }

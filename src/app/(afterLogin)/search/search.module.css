@@ -11,6 +11,7 @@
 }
 
 .searchTop {
+    background-color: rgba(0, 0, 0, 0.65);
     backdrop-filter: blur(12px);
     width: 598px;
     position: fixed;
