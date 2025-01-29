@@ -149,6 +149,13 @@
     background-color: rgba(29, 155, 240, 0.1);
 }
 
+.commentButton.white svg, .commentButton.white .count,
+.repostButton.white svg, .repostButton.white .count,
+.heartButton.white svg, .heartButton.white .count{
+    fill: #fff;
+    color: #fff;
+}
+
 .commentButton.commented svg, .commentButton:hover svg {
     fill: rgb(29, 155, 240)
 }
