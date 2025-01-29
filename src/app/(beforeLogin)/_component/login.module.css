@@ -120,22 +120,18 @@
     border-radius: 17px;
     border: none;
     cursor: pointer;
-    background-color: #fff;
+    background-color: black;
     position: absolute;
     left: 16px;
     top: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.2s;
 }
 .closeButton:hover {
     background-color: rgb(var(--button-hover-color-rgb));
 }
-@media (prefers-color-scheme: dark) {
-    .closeButton {
-        background-color: black;
-    }
-    .closeButton svg {
-        fill: white;
-    }
+.closeButton svg {
+    fill: white;
 }

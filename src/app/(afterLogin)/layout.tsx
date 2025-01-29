@@ -10,11 +10,12 @@ import NavMenu from '@/app/(afterLogin)/_component/NavMenu';
 import TrendSection from '@/app/(afterLogin)/_component/TrendSection';
 import style from '@/app/(afterLogin)/layout.module.css';
 
-export default function AfterLoginLayout({
-    children,
-}: {
+type Props = {
     children: ReactNode;
-}) {
+    modal: ReactNode;
+};
+
+export default function AfterLoginLayout({ children, modal }: Readonly<Props>) {
     return (
         <div className={style.container}>
             <header className={style.leftSectionWrapper}>
@@ -71,6 +72,7 @@ export default function AfterLoginLayout({
                     </section>
                 </div>
             </div>
+            {modal}
         </div>
     );
 }
