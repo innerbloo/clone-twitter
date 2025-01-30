@@ -1,5 +1,5 @@
 .logOutButton {
-    width: 258px;
+    width: 66px;
     height: 66px;
     padding: 12px;
     display: flex;
@@ -12,9 +12,11 @@
     border-radius: 33px;
     transition: background-color 0.2s;
 }
-.logOutButton:hover {
-    background-color: rgba(231,233,234, 0.1);
+
+.logOutUserName {
+    display: none;
 }
+
 .logOutUserImage {
     display: flex;
     align-items: center;
@@ -23,14 +25,26 @@
     width: 40px;
     border-radius: 50%;
 }
-.logOutUserName {
-    margin: 0 12px;
-}
-.logOutUserName > div:first-child {
-    font-weight: bold;
-    margin-bottom: 5px;
+
+@media all and (min-width: 1266px) {
+    .logOutButton {
+        width: 258px;
+    }
+
+    .logOutUserName {
+        margin: 0 12px;
+        display: inline-block;
+    }
+    .logOutUserName > div:first-child {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .logOutUserName > div:last-child {
+        color: #71767b;
+    }
 }
 
-.logOutUserName > div:last-child {
-    color: #71767b;
+.logOutButton:hover {
+    background-color: rgba(231,233,234, 0.1);
 }

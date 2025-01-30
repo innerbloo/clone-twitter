@@ -12,11 +12,18 @@
 }
 
 .navPill > div {
-    margin-left: 20px;
-    margin-right: 16px;
-    font-size: 20px;
+    display: none;
 }
 
 .navPill svg {
     fill: #fff;
+}
+
+@media all and (min-width: 1266px) {
+    .navPill > div {
+        display: inline-block;
+        margin-left: 20px;
+        margin-right: 16px;
+        font-size: 20px;
+    }
 }
