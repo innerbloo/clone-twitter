@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 
 import style from './rightSearchZone.module.css';
@@ -8,9 +8,21 @@ import style from './rightSearchZone.module.css';
 import SearchForm from '@/app/(afterLogin)/_component/SearchForm';
 
 export default function RightSearchZone() {
+    const router = useRouter();
     const pathName = usePathname();
-    const onChangeFollow = () => {};
-    const onChangeAll = () => {};
+    const searchParams = useSearchParams();
+
+    const onChangeFollow = () => {
+        const newSearchParams = new URLSearchParams(searchParams);
+        newSearchParams.set('pf', 'on');
+        router.replace(`/search?${newSearchParams.toString()}`);
+    };
+
+    const onChangeAll = () => {
+        const newSearchParams = new URLSearchParams(searchParams);
+        newSearchParams.delete('pf');
+        router.replace(`/search?${newSearchParams.toString()}`);
+    };
 
     if (pathName === '/explore' || pathName.includes('/messages')) {
         return null;

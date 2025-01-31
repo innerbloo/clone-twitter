@@ -5,7 +5,7 @@ import { FormEventHandler } from 'react';
 
 import style from '@/app/(afterLogin)/_component/rightSearchZone.module.css';
 
-type Props = { q: string; f?: string; pf?: string };
+type Props = { q?: string; f?: string; pf?: string };
 
 export default function SearchForm({ q }: Props) {
     const router = useRouter();
