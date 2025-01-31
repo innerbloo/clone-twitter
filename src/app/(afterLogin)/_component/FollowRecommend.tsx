@@ -1,14 +1,19 @@
 'use client';
 
+import { useSession } from 'next-auth/react';
+import { redirect } from 'next/navigation';
+
 import style from './followRecommend.module.css';
 
-export default function FollowRecommend() {
-    const onFollow = () => {};
+import { User } from '@/model/User';
 
-    const user = {
-        id: 'elonmusk',
-        nickname: 'Elon Musk',
-        image: '/profile.jpeg',
+export default function FollowRecommend({ user }: Readonly<{ user: User }>) {
+    const { data } = useSession();
+
+    const onFollow = () => {
+        if (!data?.user) {
+            redirect('/login');
+        }
     };
 
     return (

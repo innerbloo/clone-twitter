@@ -1,8 +1,8 @@
 import style from './search.module.css';
 
 import BackButton from '@/app/(afterLogin)/_component/BackButton';
-import Post from '@/app/(afterLogin)/_component/Post';
 import SearchForm from '@/app/(afterLogin)/_component/SearchForm';
+import SearchResult from '@/app/(afterLogin)/search/_component/SearchResult';
 import Tab from '@/app/(afterLogin)/search/_component/Tab';
 
 type Props = {
@@ -10,9 +10,7 @@ type Props = {
 };
 
 export default async function Search({ searchParams }: Props) {
-    const { q } = await searchParams;
-
-    console.log(q);
+    const query = await searchParams;
 
     return (
         <main className={style.main}>
@@ -22,24 +20,13 @@ export default async function Search({ searchParams }: Props) {
                         <BackButton />
                     </div>
                     <div className={style.formZone}>
-                        <SearchForm q={q} />
+                        <SearchForm q={query.q} f={query.f} pf={query.pf} />
                     </div>
                 </div>
                 <Tab />
             </div>
             <div className={style.list}>
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                {/*<SearchResult searchParams={searchParams} />*/}
+                <SearchResult searchParams={query} />
             </div>
         </main>
     );

@@ -4,7 +4,16 @@ import { useRef, useState } from 'react';
 
 import style from './commentForm.module.css';
 
-export default function CommentForm() {
+import { getSinglePost } from '@/app/(afterLogin)/[username]/status/[id]/_lib/getSinglePost';
+
+import { QueryClient, useQueryClient } from '@tanstack/react-query';
+
+type Props = { id: string };
+
+export default async function CommentForm({ id }: Props) {
+    const queryClient = useQueryClient();
+    const post = queryClient.getQueryData(['posts', id]);
+
     const [content, setContent] = useState('');
     const imageRef = useRef<HTMLInputElement>(null);
 
@@ -18,6 +27,8 @@ export default function CommentForm() {
         id: 'zerohch0',
         image: '/profile.jpeg',
     };
+
+    if (!post) return null;
 
     return (
         <form className={style.postForm} onSubmit={onSubmit}>
