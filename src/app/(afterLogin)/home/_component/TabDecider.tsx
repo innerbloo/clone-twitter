@@ -9,7 +9,7 @@ import { TabContext } from '@/app/(afterLogin)/home/_component/TabProvider';
 export default function TabDecider() {
     const { tab } = useContext(TabContext);
     if (tab === 'rec') {
-        return <PostRecommends />;
+        return <PostRecommends key={1} />;
     }
-    return <FollowingPosts />;
+    return <FollowingPosts key={2} />;
 }
