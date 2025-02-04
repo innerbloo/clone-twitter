@@ -1,6 +1,6 @@
 import { HttpResponse, http } from 'msw';
 
-import { faker } from '@faker-js/faker';
+import { de, faker } from '@faker-js/faker';
 
 function generateDate() {
     const lastWeek = new Date(Date.now());
@@ -100,7 +100,10 @@ export const handlers = [
             },
         ]);
     }),
-    http.get(`${baseUrl}/api/followingPosts`, ({ request }) => {
+    http.get(`${baseUrl}/api/followingPosts`, async ({ request }) => {
+        const delay = (ms: number) =>
+            new Promise((resolve) => setTimeout(resolve, ms));
+        await delay(3000);
         const url = new URL(request.url);
         const cursor = parseInt(url.searchParams.get('cursor') as string) || 0;
 
