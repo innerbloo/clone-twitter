@@ -2,40 +2,44 @@
 
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { ChangeEvent, FormEventHandler, useState } from 'react';
+import { ChangeEventHandler, FormEventHandler, useState } from 'react';
 
-import BackButton from '@/app/(beforeLogin)/_component/BackButton';
 import style from '@/app/(beforeLogin)/_component/login.module.css';
 
 export default function LoginModal() {
-    const router = useRouter();
-
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const router = useRouter();
 
     const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
         setMessage('');
         try {
-            await signIn('credentials', {
+            const result = await signIn('credentials', {
                 username: id,
                 password,
                 redirect: false,
             });
-
+            if (result?.code === 'no_user') {
+                setMessage('가입하지 않은 유저입니다.');
+            } else if (result?.code === 'wrong_password') {
+                setMessage('비밀번호가 틀렸습니다.');
+            }
             router.replace('/home');
         } catch (err) {
             console.error(err);
-            setMessage('아이디와 비밀번호가 일치하지 않습니다.');
         }
     };
+    const onClickClose = () => {
+        router.back();
+    };
 
-    const onChangeId = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeId: ChangeEventHandler<HTMLInputElement> = (e) => {
         setId(e.target.value);
     };
 
-    const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangePassword: ChangeEventHandler<HTMLInputElement> = (e) => {
         setPassword(e.target.value);
     };
 
@@ -43,7 +47,21 @@ export default function LoginModal() {
         <div className={style.modalBackground}>
             <div className={style.modal}>
                 <div className={style.modalHeader}>
-                    <BackButton />
+                    <button
+                        className={style.closeButton}
+                        onClick={onClickClose}
+                    >
+                        <svg
+                            width={24}
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                            className="r-18jsvk2 r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03"
+                        >
+                            <g>
+                                <path d="M10.59 12L4.54 5.96l1.42-1.42L12 10.59l6.04-6.05 1.42 1.42L13.41 12l6.05 6.04-1.42 1.42L12 13.41l-6.04 6.05-1.42-1.42L10.59 12z"></path>
+                            </g>
+                        </svg>
+                    </button>
                     <div>로그인하세요.</div>
                 </div>
                 <form onSubmit={onSubmit}>

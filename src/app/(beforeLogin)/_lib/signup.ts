@@ -23,6 +23,7 @@ export default async (
     if (!formData.get('image')) {
         return { message: 'no_image' };
     }
+    formData.set('nickname', formData.get('name') as string);
     let shouldRedirect = false;
     try {
         const response = await fetch(
@@ -33,11 +34,17 @@ export default async (
                 credentials: 'include',
             },
         );
-        console.log(response.status);
         if (response.status === 403) {
             return { message: 'user_exists' };
+        } else if (response.status === 400) {
+            return {
+                message: (await response.json()).data[0],
+                id: formData.get('id'),
+                nickname: formData.get('nickname'),
+                password: formData.get('password'),
+                image: formData.get('image'),
+            };
         }
-        console.log(await response.json());
         shouldRedirect = true;
         await signIn('credentials', {
             username: formData.get('id'),

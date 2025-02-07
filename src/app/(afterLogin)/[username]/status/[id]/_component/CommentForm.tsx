@@ -1,11 +1,14 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
-import { useRef, useState } from 'react';
+import { ChangeEventHandler, FormEvent, useRef, useState } from 'react';
+import TextareaAutosize from 'react-textarea-autosize';
 
 import style from './commentForm.module.css';
 
-import { useQueryClient } from '@tanstack/react-query';
+import { Post } from '@/model/Post';
+
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 type Props = {
     id: string;
@@ -14,19 +17,96 @@ export default function CommentForm({ id }: Props) {
     const [content, setContent] = useState('');
     const imageRef = useRef<HTMLInputElement>(null);
     const { data: me } = useSession();
+    const [preview, setPreview] = useState<
+        Array<{ dataUrl: string; file: File } | null>
+    >([]);
 
-    const onClickButton = () => {};
-    const onSubmit = () => {};
-    const onChange = () => {};
+    const mutation = useMutation({
+        mutationFn: async (e: FormEvent) => {
+            e.preventDefault();
+            const formData = new FormData();
+            formData.append('content', content);
+            preview.forEach((p) => {
+                p && formData.append('images', p.file);
+            });
+            return fetch(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${id}/comments`,
+                {
+                    method: 'post',
+                    credentials: 'include',
+                    body: formData,
+                },
+            );
+        },
+        async onSuccess(response, variable) {
+            const newPost = await response.json();
+            setContent('');
+            setPreview([]);
+            if (
+                queryClient.getQueryData(['posts', id.toString(), 'comments'])
+            ) {
+                queryClient.setQueryData(
+                    ['posts', id.toString(), 'comments'],
+                    (prevData: { pages: Post[][] }) => {
+                        const shallow = {
+                            ...prevData,
+                            pages: [...prevData.pages],
+                        };
+                        shallow.pages[0] = [...shallow.pages[0]];
+                        shallow.pages[0].unshift(newPost);
+                        return shallow;
+                    },
+                );
+            }
+        },
+        onError(error) {
+            console.error(error);
+        },
+    });
+
+    const onChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+        setContent(e.target.value);
+    };
+
+    const onClickButton = () => {
+        imageRef.current?.click();
+    };
+
+    const onRemoveImage = (index: number) => () => {
+        setPreview((prevPreview) => {
+            const prev = [...prevPreview];
+            prev[index] = null;
+            return prev;
+        });
+    };
+
+    const onUpload: ChangeEventHandler<HTMLInputElement> = (e) => {
+        e.preventDefault();
+        if (e.target.files) {
+            Array.from(e.target.files).forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    setPreview((prevPreview) => {
+                        const prev = [...prevPreview];
+                        prev[index] = {
+                            dataUrl: reader.result as string,
+                            file,
+                        };
+                        return prev;
+                    });
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+    };
 
     const queryClient = useQueryClient();
     const post = queryClient.getQueryData(['posts', id]);
-    console.log('post', post, id);
     if (!post) {
         return null;
     }
     return (
-        <form className={style.postForm} onSubmit={onSubmit}>
+        <form className={style.postForm} onSubmit={mutation.mutate}>
             <div className={style.postUserSection}>
                 <div className={style.postUserImage}>
                     <img
@@ -36,11 +116,33 @@ export default function CommentForm({ id }: Props) {
                 </div>
             </div>
             <div className={style.postInputSection}>
-                <textarea
+                <TextareaAutosize
                     value={content}
                     onChange={onChange}
                     placeholder="답글 게시하기"
                 />
+                <div style={{ display: 'flex' }}>
+                    {preview.map(
+                        (v, index) =>
+                            v && (
+                                <div
+                                    key={index}
+                                    style={{ flex: 1 }}
+                                    onClick={onRemoveImage(index)}
+                                >
+                                    <img
+                                        src={v.dataUrl}
+                                        alt="미리보기"
+                                        style={{
+                                            width: '100%',
+                                            objectFit: 'contain',
+                                            maxHeight: 100,
+                                        }}
+                                    />
+                                </div>
+                            ),
+                    )}
+                </div>
                 <div className={style.postButtonSection}>
                     <div className={style.footerButtons}>
                         <div className={style.footerButtonLeft}>
@@ -50,6 +152,7 @@ export default function CommentForm({ id }: Props) {
                                 multiple
                                 hidden
                                 ref={imageRef}
+                                onChange={onUpload}
                             />
                             <button
                                 className={style.uploadButton}
@@ -57,7 +160,7 @@ export default function CommentForm({ id }: Props) {
                                 onClick={onClickButton}
                             >
                                 <svg
-                                    width={20}
+                                    width={24}
                                     viewBox="0 0 24 24"
                                     aria-hidden="true"
                                 >

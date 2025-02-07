@@ -1,8 +1,6 @@
 'use client';
 
-import Form from 'next/form';
-import { useActionState } from 'react';
-import { useFormStatus } from 'react-dom';
+import { useFormState, useFormStatus } from 'react-dom';
 
 import onSubmit from '../_lib/signup';
 import style from './signup.module.css';
@@ -25,11 +23,14 @@ function showMessage(message: string | null | undefined) {
     if (message === 'user_exists') {
         return '이미 사용 중인 아이디입니다.';
     }
-    return '';
+    if (message === 'nickname must be a string') {
+        return '닉네임이 필요합니다.';
+    }
+    return message;
 }
 
 export default function SignupModal() {
-    const [state, formAction] = useActionState(onSubmit, { message: null });
+    const [state, formAction] = useFormState(onSubmit, { message: null });
     const { pending } = useFormStatus();
 
     return (
@@ -40,7 +41,7 @@ export default function SignupModal() {
                         <BackButton />
                         <div>계정을 생성하세요.</div>
                     </div>
-                    <Form action={formAction}>
+                    <form action={formAction}>
                         <div className={style.modalBody}>
                             <div className={style.inputDiv}>
                                 <label
@@ -56,6 +57,7 @@ export default function SignupModal() {
                                     type="text"
                                     placeholder=""
                                     required
+                                    defaultValue={state.id as string}
                                 />
                             </div>
                             <div className={style.inputDiv}>
@@ -72,6 +74,7 @@ export default function SignupModal() {
                                     type="text"
                                     placeholder=""
                                     required
+                                    defaultValue={state.nickname as string}
                                 />
                             </div>
                             <div className={style.inputDiv}>
@@ -88,6 +91,7 @@ export default function SignupModal() {
                                     type="password"
                                     placeholder=""
                                     required
+                                    defaultValue={state.password as string}
                                 />
                             </div>
                             <div className={style.inputDiv}>
@@ -104,6 +108,7 @@ export default function SignupModal() {
                                     className={style.input}
                                     type="file"
                                     accept="image/*"
+                                    defaultValue={state.image as string}
                                 />
                             </div>
                         </div>
@@ -119,7 +124,7 @@ export default function SignupModal() {
                                 {showMessage(state?.message)}
                             </div>
                         </div>
-                    </Form>
+                    </form>
                 </div>
             </div>
         </>

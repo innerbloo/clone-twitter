@@ -1,10 +1,13 @@
 export async function getTrends() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/trends`, {
-        next: {
-            tags: ['trends'],
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/hashtags/trends`,
+        {
+            next: {
+                tags: ['trends'],
+            },
+            credentials: 'include',
         },
-        credentials: 'include',
-    });
+    );
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
     if (!res.ok) {

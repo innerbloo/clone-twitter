@@ -5,13 +5,12 @@ import { useInView } from 'react-intersection-observer';
 
 import Post from '@/app/(afterLogin)/_component/Post';
 import { getPostRecommends } from '@/app/(afterLogin)/home/_lib/getPostRecommends';
-import styles from '@/app/(afterLogin)/home/home.module.css';
 import { Post as IPost } from '@/model/Post';
 
 import { InfiniteData, useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
 export default function PostRecommends() {
-    const { data, hasNextPage, fetchNextPage, isFetching, isPending } =
+    const { data, hasNextPage, fetchNextPage, isFetching } =
         useSuspenseInfiniteQuery<
             IPost[],
             Object,
@@ -37,48 +36,6 @@ export default function PostRecommends() {
             fetchNextPage();
         }
     }, [inView, hasNextPage, isFetching, fetchNextPage]);
-
-    // if (isPending) {
-    //     return (
-    //         <div
-    //             style={{
-    //                 display: 'flex',
-    //                 flex: 1,
-    //                 justifyContent: 'center',
-    //                 alignItems: 'center',
-    //                 marginTop: 20,
-    //             }}
-    //         >
-    //             <svg
-    //                 className={styles.loader}
-    //                 height="100%"
-    //                 viewBox="0 0 32 32"
-    //                 width={40}
-    //             >
-    //                 <circle
-    //                     cx="16"
-    //                     cy="16"
-    //                     fill="none"
-    //                     r="14"
-    //                     strokeWidth="4"
-    //                     style={{ stroke: 'rgb(29, 155, 240)', opacity: 0.2 }}
-    //                 ></circle>
-    //                 <circle
-    //                     cx="16"
-    //                     cy="16"
-    //                     fill="none"
-    //                     r="14"
-    //                     strokeWidth="4"
-    //                     style={{
-    //                         stroke: 'rgb(29, 155, 240)',
-    //                         strokeDasharray: 80,
-    //                         strokeDashoffset: 60,
-    //                     }}
-    //                 ></circle>
-    //             </svg>
-    //         </div>
-    //     );
-    // }
 
     return (
         <>

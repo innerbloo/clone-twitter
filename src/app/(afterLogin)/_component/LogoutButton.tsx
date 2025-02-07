@@ -5,9 +5,14 @@ import { useRouter } from 'next/navigation';
 
 import style from './logoutButton.module.css';
 
-export default function LogoutButton() {
+import { Session } from '@auth/core/types';
+
+type Props = {
+    me: Session | null;
+};
+
+export default function LogoutButton({ me }: Props) {
     const router = useRouter();
-    const { data: me } = useSession();
     const onLogout = () => {
         signOut({ redirect: false }).then(() => {
             router.replace('/');

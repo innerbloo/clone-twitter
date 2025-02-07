@@ -10,7 +10,7 @@ import { Post as IPost } from '@/model/Post';
 import { InfiniteData, useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
 export default function FollowingPosts() {
-    const { data, fetchNextPage, hasNextPage, isFetching, isPending } =
+    const { data, fetchNextPage, hasNextPage, isFetching } =
         useSuspenseInfiniteQuery<
             IPost[],
             Object,

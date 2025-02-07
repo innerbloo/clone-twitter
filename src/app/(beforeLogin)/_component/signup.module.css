@@ -8,12 +8,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-@media (prefers-color-scheme: dark) {
-    .modalBackground {
-        background-color: rgba(91, 112, 131, 0.4);
-    }
+    background-color: rgba(91, 112, 131, 0.4);
+
 }
 .modal {
     background-color: #000;
@@ -119,27 +115,23 @@
     border-radius: 17px;
     border: none;
     cursor: pointer;
-    background-color: #fff;
+    background-color: black;
     position: absolute;
     left: 16px;
     top: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.2s;
 }
 .closeButton:hover {
     background-color: rgb(var(--button-hover-color-rgb));
 }
+.closeButton svg {
+    fill: white;
+}
 @media all and (min-width: 687px) {
     .closeButton {
         left: 16px;
-    }
-}
-@media (prefers-color-scheme: dark) {
-    .closeButton {
-        background-color: black;
-    }
-    .closeButton svg {
-        fill: white;
     }
 }

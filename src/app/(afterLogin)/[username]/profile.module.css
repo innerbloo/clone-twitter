@@ -36,10 +36,18 @@
     align-items: center;
 }
 .userFollower {
+    width: 134px;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding-top: 8px;
+}
+.userFollower div {
+    font-size: 14px;
+    color: #71767b;
+}
+.userFollower div b {
+    color: #fff;
 }
 
 .userImage {
@@ -49,10 +57,10 @@
     border-radius: 50%;
     width: 134px;
     height: 134px;
-    border: 1px solid lightgray;
 }
 .userImage img {
     width: 134px;
+    height: 134px;
     border-radius: 50%;
 }
 .userName {
@@ -65,6 +73,7 @@
 }
 .userName > div:last-child {
     font-size: 15px;
+    color: #71767b;
 }
 .followButton {
     border: 1px solid rgb(207, 217, 222);
@@ -81,10 +90,17 @@
     transition: background-color 0.2s;
     font-weight: bold;
 }
+.followButton.followed {
+    background: #000;
+    color: #fff;
+    border: 1px solid grey;
+}
 .followButton:hover {
     background-color: rgb(215, 219, 220);
 }
-
+.followButton.followed:hover {
+    background-color: rgba(239, 243, 244, 0.1);
+}
 .backButton {
     width: 34px;
     height: 34px;

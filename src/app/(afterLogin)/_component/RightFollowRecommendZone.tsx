@@ -15,8 +15,6 @@ export default function RightFollowRecommendZone() {
         gcTime: 300 * 1000,
     });
 
-    console.log(data);
-
     return (
         <div className={style.followRecommend}>
             <h3>팔로우 추천</h3>

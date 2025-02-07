@@ -1,14 +1,20 @@
-type Props = { pageParam?: number };
+import { cookies } from 'next/headers';
 
-export async function getFollowingPosts({ pageParam }: Props) {
+export const getSinglePostServer = async ({
+    queryKey,
+}: {
+    queryKey: [string, string];
+}) => {
+    const [_1, id] = queryKey;
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/followings?cursor=${pageParam}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${id}`,
         {
             next: {
-                tags: ['posts', 'followings'],
+                revalidate: 3600,
+                tags: ['posts', id],
             },
-            cache: 'no-cache',
             credentials: 'include',
+            headers: { Cookie: (await cookies()).toString() },
         },
     );
     // The return value is *not* serialized
@@ -18,4 +24,4 @@ export async function getFollowingPosts({ pageParam }: Props) {
         throw new Error('Failed to fetch data');
     }
     return res.json();
-}
+};

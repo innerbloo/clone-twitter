@@ -21,23 +21,20 @@ export default function TrendSection() {
         enabled: !!session?.user,
     });
 
-    const pathName = usePathname();
-
-    if (pathName === '/explore') return null;
-
+    const pathname = usePathname();
+    if (pathname === '/explore') return null;
     if (session?.user) {
         return (
             <div className={style.trendBg}>
                 <div className={style.trend}>
                     <h3>나를 위한 트렌드</h3>
                     {data?.map((trend) => (
-                        <Trend key={trend.title} trend={trend} />
+                        <Trend trend={trend} key={trend.title} />
                     ))}
                 </div>
             </div>
         );
     }
-
     return (
         <div className={style.trendBg}>
             <div className={style.noTrend}>트렌드를 가져올 수 없습니다.</div>
