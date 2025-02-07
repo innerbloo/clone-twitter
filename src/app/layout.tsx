@@ -11,6 +11,7 @@ if (
     process.env.NODE_ENV !== 'production' &&
     process.env.NEXT_PUBLIC_MSW_ENABLED !== 'false'
 ) {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { server } = require('@/mocks/http');
     server.listen();
 }

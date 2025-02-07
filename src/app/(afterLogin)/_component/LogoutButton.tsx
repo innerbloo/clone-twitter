@@ -1,6 +1,6 @@
 'use client';
 
-import { signOut, useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
 import style from './logoutButton.module.css';
@@ -26,6 +26,7 @@ export default function LogoutButton({ me }: Props) {
     return (
         <button className={style.logOutButton} onClick={onLogout}>
             <div className={style.logOutUserImage}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src={me.user?.image as string}
                     alt={me.user?.email as string}

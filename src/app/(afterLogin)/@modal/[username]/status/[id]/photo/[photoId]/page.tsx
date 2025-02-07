@@ -9,7 +9,6 @@ import Comments from '@/app/(afterLogin)/[username]/status/[id]/_component/Comme
 import SinglePost from '@/app/(afterLogin)/[username]/status/[id]/_component/SinglePost';
 import { getComments } from '@/app/(afterLogin)/[username]/status/[id]/_lib/getComments';
 import { getSinglePost } from '@/app/(afterLogin)/[username]/status/[id]/_lib/getSinglePost';
-import ActionButtons from '@/app/(afterLogin)/_component/ActionButtons';
 
 import {
     HydrationBoundary,

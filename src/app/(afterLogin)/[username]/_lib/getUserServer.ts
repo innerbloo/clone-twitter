@@ -5,6 +5,7 @@ export const getUserServer = async ({
 }: {
     queryKey: [string, string];
 }) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [_1, username] = queryKey;
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${username}`,

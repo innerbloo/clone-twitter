@@ -13,9 +13,9 @@ type Props = {
     id: string;
 };
 export default function ImageZone({ id }: Props) {
-    const { data: post, error } = useQuery<
+    const { data: post } = useQuery<
         IPost,
-        Object,
+        object,
         IPost,
         [_1: string, _2: string]
     >({
@@ -24,19 +24,23 @@ export default function ImageZone({ id }: Props) {
         staleTime: 60 * 1000, // fresh -> stale, 5분이라는 기준
         gcTime: 300 * 1000,
     });
+
     if (!post?.Images[0]) {
         return null;
     }
     return (
         <div className={style.imageZone}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={post.Images[0].link} alt={post.content} />
             <div
                 className={style.image}
-                style={{ backgroundImage: `url(${post.Images[0].link})` }}
+                style={{
+                    backgroundImage: `url('${post.Images[0].link}')`,
+                }}
             />
             <div className={style.buttonZone}>
                 <div className={style.buttonInner}>
-                    <ActionButtons white />
+                    <ActionButtons white post={post} />
                 </div>
             </div>
         </div>

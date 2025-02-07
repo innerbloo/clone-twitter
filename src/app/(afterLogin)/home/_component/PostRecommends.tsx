@@ -13,7 +13,7 @@ export default function PostRecommends() {
     const { data, hasNextPage, fetchNextPage, isFetching } =
         useSuspenseInfiniteQuery<
             IPost[],
-            Object,
+            object,
             InfiniteData<IPost[]>,
             [_1: string, _2: string],
             number

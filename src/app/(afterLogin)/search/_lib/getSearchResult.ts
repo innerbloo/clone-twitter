@@ -10,6 +10,7 @@ export const getSearchResult: QueryFunction<
         searchParams: { q: string; pf?: string; f?: string },
     ]
 > = async ({ queryKey }) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [_1, _2, searchParams] = queryKey;
     const urlSearchParams = new URLSearchParams(searchParams);
     const res = await fetch(

@@ -38,7 +38,7 @@ export default function CommentForm({ id }: Props) {
                 },
             );
         },
-        async onSuccess(response, variable) {
+        async onSuccess(response) {
             const newPost = await response.json();
             setContent('');
             setPreview([]);
@@ -109,6 +109,7 @@ export default function CommentForm({ id }: Props) {
         <form className={style.postForm} onSubmit={mutation.mutate}>
             <div className={style.postUserSection}>
                 <div className={style.postUserImage}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                         src={me?.user?.image as string}
                         alt={me?.user?.email as string}
@@ -130,6 +131,7 @@ export default function CommentForm({ id }: Props) {
                                     style={{ flex: 1 }}
                                     onClick={onRemoveImage(index)}
                                 >
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
                                         src={v.dataUrl}
                                         alt="미리보기"

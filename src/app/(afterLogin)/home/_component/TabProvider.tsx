@@ -4,6 +4,7 @@ import { ReactNode, createContext, useState } from 'react';
 
 export const TabContext = createContext({
     tab: 'rec',
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     setTab: (value: 'rec' | 'fol') => {},
 });
 

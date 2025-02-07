@@ -55,6 +55,7 @@ export default function Page() {
                 </div>
             </div>
             <Link href={user.nickname} className={style.userInfo}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={user.image} alt={user.id} />
                 <div>
                     <b>{user.nickname}</b>

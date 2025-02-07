@@ -122,6 +122,7 @@ export default function PostForm({ me }: Props) {
         <form className={style.postForm} onSubmit={mutation.mutate}>
             <div className={style.postUserSection}>
                 <div className={style.postUserImage}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                         src={me?.user?.image as string}
                         alt={me?.user?.email as string}
@@ -151,6 +152,7 @@ export default function PostForm({ me }: Props) {
                                         }}
                                         onClick={onRemoveImage(index)}
                                     >
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
                                         <img
                                             src={v.dataUrl}
                                             alt="미리보기"

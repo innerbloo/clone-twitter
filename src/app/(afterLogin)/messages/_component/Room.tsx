@@ -30,6 +30,7 @@ export default function Room() {
     return (
         <div className={style.room} onClickCapture={onClick}>
             <div className={style.roomUserImage}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={faker.image.avatar()} alt="" />
             </div>
             <div className={style.roomChatInfo}>

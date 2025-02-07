@@ -18,7 +18,7 @@ type Props = {
 export default function UserInfo({ username, session }: Props) {
     const { data: user, error } = useQuery<
         User,
-        Object,
+        object,
         User,
         [_1: string, _2: string]
     >({
@@ -271,6 +271,7 @@ export default function UserInfo({ username, session }: Props) {
             <div className={style.userZone}>
                 <div className={style.userRow}>
                     <div className={style.userImage}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={user.image} alt={user.id} />
                     </div>
                     <div className={style.userName}>

@@ -7,7 +7,7 @@ type Props = {
     post: {
         postId: number;
         User: { id: string };
-        Images: any[];
+        Images: { imageId: string; link: string }[];
     };
 };
 
@@ -25,6 +25,7 @@ export default function PostImages({ post }: Props) {
                     backgroundSize: 'contain',
                 }}
             >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={post.Images[0]?.link} alt="" />
             </Link>
         );

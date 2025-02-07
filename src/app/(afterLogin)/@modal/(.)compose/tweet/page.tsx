@@ -53,7 +53,7 @@ export default function TweetModal() {
                 body: formData,
             });
         },
-        async onSuccess(response, variable) {
+        async onSuccess(response) {
             const newPost = await response.json();
             setContent('');
             setPreview([]);
@@ -122,7 +122,7 @@ export default function TweetModal() {
                 },
             );
         },
-        async onSuccess(response, variable) {
+        async onSuccess(response) {
             const newPost = await response.json();
             setContent('');
             setPreview([]);
@@ -269,6 +269,7 @@ export default function TweetModal() {
                         <div className={style.modalOriginal}>
                             <div className={style.postUserSection}>
                                 <div className={style.postUserImage}>
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
                                         src={parent.User.image}
                                         alt={parent.User.id}
@@ -292,6 +293,7 @@ export default function TweetModal() {
                     <div className={style.modalBody}>
                         <div className={style.postUserSection}>
                             <div className={style.postUserImage}>
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
                                     src={me?.user?.image as string}
                                     alt={me?.user?.email as string}
@@ -318,6 +320,7 @@ export default function TweetModal() {
                                                 style={{ flex: 1 }}
                                                 onClick={onRemoveImage(index)}
                                             >
+                                                {/* eslint-disable-next-line @next/next/no-img-element */}
                                                 <img
                                                     src={v.dataUrl}
                                                     alt="미리보기"

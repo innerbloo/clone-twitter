@@ -13,7 +13,7 @@ export default function FollowingPosts() {
     const { data, fetchNextPage, hasNextPage, isFetching } =
         useSuspenseInfiniteQuery<
             IPost[],
-            Object,
+            object,
             InfiniteData<IPost[]>,
             [_1: string, _2: string],
             number

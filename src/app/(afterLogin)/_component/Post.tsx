@@ -6,6 +6,8 @@ import 'dayjs/locale/ko';
 import ActionButtons from "@/app/(afterLogin)/_component/ActionButtons";
 import PostArticle from "@/app/(afterLogin)/_component/PostArticle";
 import PostImages from "@/app/(afterLogin)/_component/PostImages";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import {Post} from "@/model/Post";
 import {MouseEventHandler} from "react";
 
@@ -41,6 +43,7 @@ export default function Post({ noImage, post }: Props) {
             <div className={style.postWrapper}>
                 <div className={style.postUserSection}>
                     <Link href={`/${target.User.id}`} className={style.postUserImage} onClick={stopPropagation}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={target.User.image} alt={target.User.nickname}/>
                         <div className={style.postShade}/>
                     </Link>
@@ -62,6 +65,8 @@ export default function Post({ noImage, post }: Props) {
                     </div>}
                     <div>{target.content}</div>
                     {!noImage && <div>
+                        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                      {/* @ts-expect-error */}
                       <PostImages post={target} />
                     </div>}
                     <ActionButtons post={post} />

@@ -13,7 +13,7 @@ type Props = {
 export default function UserPosts({ username }: Props) {
     const { data } = useQuery<
         IPost[],
-        Object,
+        object,
         IPost[],
         [_1: string, _2: string, _3: string]
     >({
